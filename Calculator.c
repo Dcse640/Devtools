@@ -13,9 +13,11 @@ int main() {
 
     // Perform the calculation based on the operator
     switch(operator) {
+        // Addition
         case '+':
             result = num1 + num2;
             break;
+        //subtraction
         case '-':
             result = num1 - num2;
             break;
