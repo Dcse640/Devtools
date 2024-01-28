@@ -32,6 +32,33 @@ struct Node* insertAtBeginning(struct Node* head, int newData) {
     return newNode;
 }
 
+// Function to delete a node with a specified value from the linked list
+struct Node* deleteNode(struct Node* head, int key) {
+    struct Node* current = head;
+    struct Node* prev = NULL;
+
+    // Search for the node with the specified value
+    while (current != NULL && current->data != key) {
+        prev = current;
+        current = current->next;
+    }
+
+    // If the node is found, remove it
+    if (current != NULL) {
+        // If the node is the first node
+        if (prev == NULL) {
+            head = current->next;
+        } else {
+            prev->next = current->next;
+        }
+
+        // Free the memory of the deleted node
+        free(current);
+    }
+
+    return head;
+}
+
 int main() {
     // Create an empty linked list
     struct Node* head = NULL;
@@ -42,7 +69,14 @@ int main() {
     head = insertAtBeginning(head, 1);
 
     // Print the linked list
-    printf("Linked List: ");
+    printf("Linked List (Before Deletion): ");
+    printList(head);
+
+    // Delete a node with value 2
+    head = deleteNode(head, 2);
+
+    // Print the linked list after deletion
+    printf("Linked List (After Deletion): ");
     printList(head);
 
     // Free allocated memory (you should free the entire list in a real-world scenario)
